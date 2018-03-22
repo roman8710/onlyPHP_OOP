@@ -1,5 +1,6 @@
+<?php 
 class DB {
-	$conMysqli;
+	public $conMysqli;
 
 	public function __construct($array){
 		$this->conMysqli = new mysqli($array['host'], $array['user'], $array['pass'], $array['db']);
@@ -12,8 +13,9 @@ class DB {
 
 		if($result->num_rows > 0)
 		{
-			return $result->mysqli_fetch_array($result);
+			$data[] = $result->fetch_row();
 		}
+		return $data;
 		mysqli_free_result($result);
 	}
 
@@ -46,3 +48,4 @@ class DB {
 
 
 }
+?>
