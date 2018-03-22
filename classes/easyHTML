@@ -1,0 +1,57 @@
+<?php
+
+class easyHTML {
+	
+	public static function header() {
+		$header = '';
+		$header .='<!DOCTYPE html>';
+		$header .='<html lang="en" dir="ltr">';
+		$header .='<head>';
+		$header .='<meta charset="UTF-8"/>';
+		$header .='<title>hear - Wiktionary</title>';
+		$header .='</head>';
+		$header .='<body>';
+		return $header;
+	}
+
+	public static funtion footer() {
+		$footer = '';
+		$footer .='</body>';
+		$footer .='</html>';
+		return $footer;
+	}
+
+	public function record($titles, $array){
+		$data = '';
+		$data .= '<table>';
+		$data .= '<tr>';
+		foreach($titles as $title){	
+			$data .= '<td>'.$title.'</td>';
+		}
+		$data .= '</tr>';
+		
+		foreach($array as $row){
+			$data .= '<tr>';
+				foreach($row as $col){
+					$data .= '<td>'.$col.'</td>';
+				}
+			$data .= '</tr>';
+		}
+		$data .= '</table>';
+		return $data;
+	}
+
+	public function form(){
+		$form = '';
+		//(array_expression as $key => $value)
+
+	}
+
+	public function input($name, $type, $required=0){
+		/*if($type=='text' || $type=='number' || $type='email'){}
+		$input = '';
+		//(array_expression as $key => $value)
+*/
+	}
+} 
+?>
