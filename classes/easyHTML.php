@@ -24,6 +24,7 @@ class easyHTML {
 
 	public function record($titles, $array){
 		$data = '';
+		$data .= '<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> New User</button>';
 		$data .= '<table class="table table-bordered">';
 		$data .= '<thead class="thead-light">';
 
@@ -40,8 +41,8 @@ class easyHTML {
 				foreach($row as $col){
 					$data .= '<td>'.$col.'</td>';
 				}
-				$data .= '<td>Change</td>';
-				$data .= '<td>Delete</td>';
+				$data .= '<td><button type="button" class="btn btn-success">Change</button></td>';
+				$data .= '<td><button type="button" class="btn btn-danger">Delete</button></td>';
 			$data .= '</tr>';
 		}
 		$data .= '</table>';
