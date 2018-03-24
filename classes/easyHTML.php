@@ -9,7 +9,10 @@ class easyHTML {
 		$header .='<head>';
 		$header .='<meta charset="UTF-8"/>';
 		$header .='<title>Example PHP OOP with Bootstrap and Jquery</title>';
-		$header .='<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">';
+		$header .='<link rel="stylesheet" href="css/bootstrap.min.css" >';
+		$header .='<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">';
+		$header .='<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>';
+		$header .='<script src="functions.js"></script>';
 		$header .='</head>';
 		$header .='<body>';
 		return $header;
@@ -22,9 +25,20 @@ class easyHTML {
 		return $footer;
 	}
 
-	public function record($titles, $array){
+	public function addSection($id){
+		return '<div id="'.$id.'"></div>';
+	}
+
+	public function button($text, $class, $icon, $event=''){
+		$boton = '<button type="button" class="'.$class.'"';
+		$boton .= ($event)? ' onclick="'.$event.'"' : '';
+		$boton .= '><i class="'.$icon.'"></i> '.$text.'</button>';
+		return $boton;
+	}
+
+	public function record($titles, $array, $id=''){
 		$data = '';
-		$data .= '<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> New User</button>';
+		$data .= ($id)? $this->addSection($id) : ''; 
 		$data .= '<table class="table table-bordered">';
 		$data .= '<thead class="thead-light">';
 
@@ -41,25 +55,14 @@ class easyHTML {
 				foreach($row as $col){
 					$data .= '<td>'.$col.'</td>';
 				}
-				$data .= '<td><button type="button" class="btn btn-success">Change</button></td>';
-				$data .= '<td><button type="button" class="btn btn-danger">Delete</button></td>';
+				$data .= '<td>'.$this->button('Change', 'btn btn-success', 'fas fa-pencil-alt').'</td>';
+				$data .= '<td>'.$this->button('Delete', 'btn btn-danger', 'fas fa-trash-alt').'</td>';
 			$data .= '</tr>';
 		}
 		$data .= '</table>';
+		$data .= '</div>';
 		return $data;
 	}
-
-	public function form(){
-		$form = '';
-		//(array_expression as $key => $value)
-
-	}
-
-	public function input($name, $type, $required=0){
-		/*if($type=='text' || $type=='number' || $type='email'){}
-		$input = '';
-		//(array_expression as $key => $value)
-*/
-	}
+	
 } 
 ?>
