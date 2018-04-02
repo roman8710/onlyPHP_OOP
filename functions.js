@@ -1,5 +1,4 @@
 function sendForm(form, url, id){
-
   $.ajax({                        
      type: "POST",                 
      url: url,                    
@@ -8,9 +7,13 @@ function sendForm(form, url, id){
      {
        $("#"+id).html(data);           
      }
-   });
+  });
 }
 
 function charge(id, url){
   $("#"+id).load(url);
+}
+
+function gourl(url){
+  self.location = url;
 }

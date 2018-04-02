@@ -5,9 +5,9 @@ class Form {
 	var $form;
 	var $action;
 
-	public function __construct($method, $action, $id){
-		$this->formIni = '<form method="'.$method.'"  id="'.$id.'" enctype="multipart/form-data">';
-		$this->formIni = '<table class="">';
+	public function __construct($method, $action, $id, $sendId){
+		$this->formIni = '<form method="'.$method.'"  id="'.$id.'" enctype="multipart/form-data" onsubmit="sendForm('.$id.','.$action.','.$sendId.')">';
+		$this->formIni = '<table class="table-striped table-bordered">';
 		$this->formEnd = '</table>';
 		$this->formEnd = '</form>';
 		$this->form = '';
@@ -21,11 +21,9 @@ class Form {
 		return $boton;
 	}
 
-	public function inputs($name, $type, $text, $value='', $required=0){
+	public function inputs($name, $type, $text, $value=''){
 		if($type == 'text' || $type == 'number' || $type == 'email' || $type == 'tel' || $type == 'url' || $type == 'date' || $type == 'file'){
-			$field = '<input type="'.$type.'" name="'.$name.'" ';
-			$field .= ($required)? ' required': '';
-			$field .=' placeholder="Enter '.ucwords($text).'">';
+			$field = '<input type="'.$type.'" name="'.$name.'" id="'.$name.'" placeholder="Enter '.ucwords($text).'">';
 			$this->form .= '<tr><td>'.ucwords($text).'</td><td>'.$field.'</td></tr>';
 		}
 	}

@@ -4,11 +4,15 @@ class DB {
 
 	public function __construct($array){
 		$this->conMysqli = new mysqli($array['host'], $array['user'], $array['pass'], $array['db']);
+	}
+
+	public function conexId() {
 		return $this->conMysqli;
 	}
 
 	public function query($query, $type, $con=''){
 		if(!$con) { $con = $this->conMysqli; }
+		//echo $query;
 		$result = $con->query($query);
 		switch($type){
 			case 1: //INSERT
@@ -25,7 +29,7 @@ class DB {
 			break;
 			case 3: //UPDATE
 			case 4: //DELETE
-				return mysqli_affected_rows($result);
+				return mysqli_affected_rows($this->conMysqli);
 			break;
 		}
 		mysqli_free_result($result);
@@ -40,9 +44,9 @@ class DB {
 
 		$fields = implode(",", $keys);
 		$vals = implode(",", $values);
+		echo $sentence .= " (".$fields.") VALUES (".$vals.")";
 
-		if($fields && $vals){
-			$sentence .= " (".$fields.") VALUES (".$vals.")";
+		if($fields && $vals){	
 			return $this->query($sentence, 1);
 		}
 		else {
@@ -51,7 +55,7 @@ class DB {
 	}
 
 	public function select($table, $cols='',$conditions='', $order='', $limit=''){
-		if($cols){ $fields = implode($cols, ","); }
+		if($cols && $cols !='*'){ $fields = implode($cols, ","); }
 		else{ $fields = "*";}
 
 		$sentence = "SELECT ".$fields." FROM ".$table;
@@ -71,7 +75,7 @@ class DB {
 
 	public function update($table, $array, $conditions){
 		
-		$sentence = "UPDATE FROM ".$table;
+		$sentence = "UPDATE ".$table;
 		$fields ="";
 		foreach ($array as $key => $val)
 		{
