@@ -1,5 +1,5 @@
 <?php
-include("conDBProject.php");
+include("configProject.php");
 
 /*
 Array ( [MAX_FILE_SIZE] => 2097152 [name_form] => form [zebra_honeypot_form] => [zebra_csrf_token_form] => 6d148cd9dbd1a37054fff0333e3e5376 [firstname] => eee [lastname] => eee [phonenumber] => 832-2740687 [email] => eeee@dddd.com [address] => ee [btnsubmit] => Submit ) 
@@ -38,8 +38,7 @@ if($firstname && $lastname && $phonenumber && $email && $address)
 		$img = copy($_FILES['file']['tmp_name'], 'photosUsers/'.$_FILES['file']['name']);
 		if(!$img)
 		{
-			echo "pro img";
-			//header("location: index.php");	
+			header("location: index.php");	
 		}
 	}
 	if($id)
@@ -50,8 +49,7 @@ if($firstname && $lastname && $phonenumber && $email && $address)
 	} else {
 		// INSERTS ROW IN USERS
 		$db->insert("users", $values);	
-		//header("location: index.php");
-		echo "insert";
+		header("location: index.php");
 	}
 }
 ?>

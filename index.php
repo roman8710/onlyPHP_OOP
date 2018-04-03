@@ -1,8 +1,7 @@
 <?php
-include("classes/easyHTML.php");
-include("conDBProject.php");
+include("configProject.php");
 
-$html = new easyHTML();
+$html = new HTML();
 echo $html->header();
 
 
@@ -12,7 +11,7 @@ $titles = array('#', 'First Name', 'Last Name', 'Phone Number', 'Email', 'Addres
 
 $event = "javascript:charge('newform', 'formUser.php')";
 
-echo '<div>'.$html->button('New User', 'btn btn-primary', 'fas fa-plus-circle', $event).'</div>';
+echo '<br><div>'.$html->button('New User', 'btn btn-primary', 'fas fa-plus-circle', $event).'</div><br>';
 echo $html->addSection('newform');
 echo $html->record($titles, $data, 'record');
 

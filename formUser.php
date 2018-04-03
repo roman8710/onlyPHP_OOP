@@ -1,5 +1,5 @@
 <?php
-include("conDBProject.php");
+include("configProject.php");
 
 // include the Zebra_Form class
 require 'classes/form/Zebra_Form.php';
